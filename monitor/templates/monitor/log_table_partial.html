@@ -1,17 +1,61 @@
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+
+    th, td {
+        padding: 14px 18px;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #343a40;
+        color: #ffffff;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    tr:hover {
+        background-color: #e2f0ff;
+        cursor: pointer;
+    }
+
+    td {
+        color: #212529;
+    }
+</style>
+
 <table>
     <thead>
         <tr>
-            <th>Dispositivo</th>
-            <th>Mensaje</th>
+            <th>Fecha</th>
             <th>Hora</th>
+            <th>Sensor emisor</th>
+            <th>Sensor receptor</th>
+            <th>Mensaje</th>
         </tr>
     </thead>
     <tbody>
         {% for log in logs %}
         <tr>
-            <td>{{ log.device.name }}</td>
+            <td>{{ log.timestamp|date:"d/m/Y" }}</td>
+            <td>{{ log.timestamp|time:"H:i:s" }}</td>
+            <td>{{ log.sender.name }}</td>
+            <td>{{ log.receiver.name }}</td>
             <td>{{ log.message }}</td>
-            <td>{{ log.timestamp|date:"M d, Y, h:i A" }}</td>
         </tr>
         {% endfor %}
     </tbody>

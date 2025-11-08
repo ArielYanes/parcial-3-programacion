@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo registro</title>
+    <title>Nuevo mensaje entre sensores</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
@@ -20,6 +20,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 600px;
         }
 
         .form-control {
@@ -45,11 +46,19 @@
     </style>
 </head>
 <body>
-    <h2>Insertar nuevo registro</h2>
+    <h2>Enviar mensaje entre sensores</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <label for="id_sender">Sensor emisor:</label>
+        {{ form.sender }}
+
+        <label for="id_receiver">Sensor receptor:</label>
+        {{ form.receiver }}
+
+        <label for="id_message">Mensaje:</label>
+        {{ form.message }}
+
+        <button type="submit">Enviar</button>
     </form>
 </body>
 </html>

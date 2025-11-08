@@ -9,9 +9,10 @@ class Device(models.Model):
         return self.name
 
 class LogEntry(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    sender = models.ForeignKey(Device, related_name='sent_logs', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(Device, related_name='received_logs', on_delete=models.CASCADE)
     message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.device.name} - {self.timestamp}"
+        return f"{self.sender.name} → {self.receiver.name} @ {self.timestamp.strftime('%d/%m/%Y %H:%M:%S')}"

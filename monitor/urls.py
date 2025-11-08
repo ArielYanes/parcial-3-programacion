@@ -1,13 +1,8 @@
 from django.urls import path
-from .views import log_table, log_table_partial
 from .views import log_table, log_table_partial, create_log_entry
 
-
-    
 urlpatterns = [
-    path('', log_table),  # ← ahora responde en http://127.0.0.1:8000/
-     path('tabla/actualizar/', log_table_partial),
-     path('nuevo/', create_log_entry),
-
+    path('', log_table, name='log_table'),  # Tabla principal
+    path('tabla/actualizar/', log_table_partial, name='log_table_partial'),  # HTMX
+    path('nuevo/', create_log_entry, name='create_log_entry'),  # Formulario de envío
 ]
-
