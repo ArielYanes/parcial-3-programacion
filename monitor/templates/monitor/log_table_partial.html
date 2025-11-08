@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Dispositivo</th>
+            <th>Mensaje</th>
+            <th>Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.device.name }}</td>
+            <td>{{ log.message }}</td>
+            <td>{{ log.timestamp|date:"M d, Y, h:i A" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
